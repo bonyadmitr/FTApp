@@ -23,13 +23,13 @@ import Cocoa
 //        </array>
 
 
-class FTAppURLTypes: NSObject {
+public class FTAppURLTypes: NSObject {
     
-    let URLName: String?
-    let appleDefault: Bool?
-    let URLSchemes: [String]?
+    public let URLName: String?
+    public let appleDefault: Bool?
+    public let URLSchemes: [String]?
     
-    override var debugDescription: String {
+    public override var debugDescription: String {
         if let URLName = URLName, let URLSchemes = URLSchemes {
             return "\(URLName) => \(URLSchemes)"
         }
@@ -37,7 +37,7 @@ class FTAppURLTypes: NSObject {
         return ""
     }
     
-    init?(URLTypes: Dictionary<String,Any>) {
+    public init?(URLTypes: Dictionary<String,Any>) {
         self.URLName = URLTypes["CFBundleURLName"] as? String
         self.appleDefault = URLTypes["LSIsAppleDefaultForScheme"] as? Bool
         self.URLSchemes = URLTypes["CFBundleURLSchemes"] as? [String]

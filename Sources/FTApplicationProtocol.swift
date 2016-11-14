@@ -7,7 +7,7 @@
 //
 import Cocoa
 
-protocol FTApplicationProtocol {
+public protocol FTApplicationProtocol {
     func isRunning() -> Bool
     func terminate(force forceQuit: Bool)
 }

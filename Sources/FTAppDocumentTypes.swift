@@ -26,15 +26,15 @@
 
 import Cocoa
 
-class FTAppDocumentTypes: NSObject {
+public class FTAppDocumentTypes: NSObject {
 
-    let iconFile: String?
-    let typeName: String?
-    let typeRole: String?
-    let appleDefault: Bool?
-    let contentTypes: [String]?
+    public let iconFile: String?
+    public let typeName: String?
+    public let typeRole: String?
+    public let appleDefault: Bool?
+    public let contentTypes: [String]?
     
-    override var debugDescription: String {
+    public override var debugDescription: String {
         if let typeName = typeName, let contentTypes = contentTypes {
             return "\(typeName) => \(contentTypes)"
         }
@@ -42,7 +42,7 @@ class FTAppDocumentTypes: NSObject {
         return ""
     }
     
-    init?(documentTypes: Dictionary<String,Any>) {
+    public init?(documentTypes: Dictionary<String,Any>) {
         self.iconFile = documentTypes["CFBundleTypeIconFile"] as? String
         self.typeName = documentTypes["CFBundleTypeName"] as? String
         self.typeRole = documentTypes["CFBundleTypeRole"] as? String

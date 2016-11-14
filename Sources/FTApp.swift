@@ -7,16 +7,16 @@
 
 import Cocoa
 
-class FTApp: FTApplicationProtocol {
+public class FTApp: FTApplicationProtocol {
     
-    let path: String
-    let bundle: Bundle
+    public let path: String
+    public let bundle: Bundle
     
-    enum error: Error {
+    public enum error: Error {
         case CannotGetBundle
     }
     
-    init(path: String) throws {
+    public init(path: String) throws {
         self.path = path
         
         guard let bundle = Bundle.init(path: path) else {
@@ -32,7 +32,7 @@ class FTApp: FTApplicationProtocol {
     // icon -> NSImage
     // ----------------------------------------------------------------------------------------
     
-    lazy var icon: NSImage = {
+    public lazy var icon: NSImage = {
         if var iconFilename = self.bundle.infoDictionary?["CFBundleIconFile"] as? String {
             if iconFilename.hasSuffix(".icns") {
                 iconFilename = (iconFilename as NSString).deletingPathExtension
@@ -53,7 +53,7 @@ class FTApp: FTApplicationProtocol {
     // name -> String
     // ----------------------------------------------------------------------------------------
     
-    lazy var name: String = {
+    public lazy var name: String = {
         if let appName = self.bundle.localizedInfoDictionary?["CFBundleExecutable"] as? String {
             return appName
         }
@@ -68,7 +68,7 @@ class FTApp: FTApplicationProtocol {
     // documentTypes -> [FTAppDocumentTypes]
     // ----------------------------------------------------------------------------------------
     
-    lazy var documentTypes: [FTAppDocumentTypes?] = {
+    public lazy var documentTypes: [FTAppDocumentTypes?] = {
         var result = [FTAppDocumentTypes?]()
         if let documentTypesArray = self.bundle.infoDictionary?["CFBundleDocumentTypes"] as? [Dictionary<String, Any>] {
             for documentTypeElement in documentTypesArray {
@@ -85,7 +85,7 @@ class FTApp: FTApplicationProtocol {
     // URLTypes -> [FTAppURLTypes]
     // ----------------------------------------------------------------------------------------
     
-    lazy var URLTypes: [FTAppURLTypes?] = {
+    public lazy var URLTypes: [FTAppURLTypes?] = {
         var result = [FTAppURLTypes?]()
         if let URLTypesArray = self.bundle.infoDictionary?["CFBundleURLTypes"] as? [Dictionary<String, Any>] {
             for URLTypeElement in URLTypesArray {
@@ -103,7 +103,7 @@ class FTApp: FTApplicationProtocol {
     // isRunning -> Bool
     // ----------------------------------------------------------------------------------------
     
-    func isRunning() -> Bool {
+    public func isRunning() -> Bool {
         for runningApplication in NSWorkspace.shared().runningApplications {
             if runningApplication.localizedName == self.name {
                 return true
@@ -119,7 +119,7 @@ class FTApp: FTApplicationProtocol {
     // terminate(force: Bool)
     // ----------------------------------------------------------------------------------------
     
-    func terminate(force forceQuit: Bool = false) {
+    public func terminate(force forceQuit: Bool = false) {
         for runningApplication in NSWorkspace.shared().runningApplications {
             if let runningApplicationLocalizedName = runningApplication.localizedName {
                 if runningApplicationLocalizedName == self.name {
