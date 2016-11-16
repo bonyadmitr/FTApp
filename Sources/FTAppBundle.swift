@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class FTAppBundle: FTApplicationProtocol {
+public class FTAppBundle: FTApplicationProtocol {
     
     public let bundleID: String
     
